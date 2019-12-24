@@ -63,7 +63,7 @@ public class LivroService {
 	}
 	
 	public Livro newLivroDto(LivroDTO livroDto) {
-		return new Livro(livroDto.getTitulo(), livroDto.getAutor(), 
+		return new Livro(livroDto.getIdLivro(), livroDto.getTitulo(), livroDto.getAutor(), 
 				livroDto.getEditora(), livroDto.getPaginas(), livroDto.getPreco());
 	}
 	

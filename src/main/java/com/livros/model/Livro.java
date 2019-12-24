@@ -32,8 +32,9 @@ public class Livro implements Serializable{
 	
 	public Livro() {}
 	
-	public Livro(String titulo, String autor, String editora, Integer paginas, Double preco) {
+	public Livro(Long idLivro, String titulo, String autor, String editora, Integer paginas, Double preco) {
 		super();
+		this.idLivro = idLivro;
 		this.titulo = titulo;
 		this.autor = autor;
 		this.editora = editora;
