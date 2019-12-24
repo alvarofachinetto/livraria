@@ -16,10 +16,10 @@ public class H2Service {
 	
 	public void loadH2() throws Exception{
 		Livro [] livros = {
-			new Livro(null, "50 Tons de Cinza", "E. L. James", "Vitage Books", 110, 19.90),
-			new Livro(null, "Pedro Nava - Leitor de Drummond", "Pedro Lenza", "Saraiva", 95, 25.90),
-			new Livro(null, "Do Luto ao Nascimento", "Camila Cabral", "Saraiva", 160, 30.00),
-			new Livro(null, "Um Caminho Para A Liberdade", "Jojo Moyes", "Saraiva", 368, 39.90)
+			new Livro("50 Tons de Cinza", "E. L. James", "Vitage Books", 110, 19.90),
+			new Livro("Pedro Nava - Leitor de Drummond", "Pedro Lenza", "Saraiva", 95, 25.90),
+			new Livro("Do Luto ao Nascimento", "Camila Cabral", "Saraiva", 160, 30.00),
+			new Livro("Um Caminho Para A Liberdade", "Jojo Moyes", "Saraiva", 368, 39.90)
 		};
 		
 		Iterable<Livro> livrosIt = Arrays.asList(livros);

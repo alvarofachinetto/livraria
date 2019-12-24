@@ -1,7 +1,6 @@
-package com.livros.resource;
+package com.livros.controller;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,26 +16,27 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.livros.dto.LivroDTO;
 import com.livros.model.Livro;
+import com.livros.response.LivroResponse;
 import com.livros.service.LivroService;
 
 import javassist.tools.rmi.ObjectNotFoundException;
 
 @RestController
 @RequestMapping("/api/livros")
-public class LivroResource {
+public class LivroController {
 	
 	@Autowired
 	private LivroService livroService;
-	
+
 	@GetMapping("/")
-	public ResponseEntity<List<Livro>> listLivros(){
-		List<Livro> livros = livroService.findAll();
-		return ResponseEntity.ok().body(livros);
+	public ResponseEntity<List<LivroResponse> > listLivros(){
+		List<LivroResponse> livrosResp = livroService.findAll();
+		return ResponseEntity.ok().body(livrosResp);
 	}
 	
 	@GetMapping("/{idLivro}")
-	public ResponseEntity<Optional<Livro>> findLivro(@PathVariable Long idLivro) throws ObjectNotFoundException{
-		Optional<Livro> livro = livroService.findId(idLivro);
+	public ResponseEntity<Livro> findLivro(@PathVariable Long idLivro) throws ObjectNotFoundException{
+		Livro livro = livroService.findId(idLivro);
 		return ResponseEntity.ok().body(livro);
 	}
 	

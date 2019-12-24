@@ -8,6 +8,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 @Entity
 public class Livro implements Serializable{
 
@@ -29,9 +32,8 @@ public class Livro implements Serializable{
 	
 	public Livro() {}
 	
-	public Livro(Long idLivro, String titulo, String autor, String editora, Integer paginas, Double preco) {
+	public Livro(String titulo, String autor, String editora, Integer paginas, Double preco) {
 		super();
-		this.idLivro = idLivro;
 		this.titulo = titulo;
 		this.autor = autor;
 		this.editora = editora;
