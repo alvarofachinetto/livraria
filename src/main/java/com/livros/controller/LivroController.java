@@ -35,9 +35,9 @@ public class LivroController {
 	}
 	
 	@GetMapping("/{idLivro}")
-	public ResponseEntity<Livro> findLivro(@PathVariable Long idLivro) throws ObjectNotFoundException{
-		Livro livro = livroService.findId(idLivro);
-		return ResponseEntity.ok().body(livro);
+	public ResponseEntity<LivroResponse> findLivro(@PathVariable Long idLivro) throws ObjectNotFoundException{
+		LivroResponse livroResponse = livroService.findId(idLivro);
+		return ResponseEntity.ok().body(livroResponse);
 	}
 	
 	@PostMapping("/livro")

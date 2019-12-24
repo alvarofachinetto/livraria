@@ -3,6 +3,7 @@ package com.livros.response;
 import org.springframework.hateoas.RepresentationModel;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.livros.model.Livro;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class LivroResponse extends RepresentationModel<LivroResponse>{
@@ -18,8 +19,8 @@ public class LivroResponse extends RepresentationModel<LivroResponse>{
 	public Long getLivroId() {
 		return livroId;
 	}
-	public void setLivroId(Long livroId) {
-		this.livroId = livroId;
+	public void setLivroId(Livro livro) {
+		this.livroId = livro.getIdLivro();
 	}
 	public String getTitulo() {
 		return titulo;

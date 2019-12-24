@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.livros.controller.LivroController;
+import com.livros.dto.LivroDTO;
 import com.livros.model.Livro;
 import com.livros.response.LivroResponse;
 
@@ -26,6 +27,23 @@ public class ResourceLivro {
 		LivroResponse livroResponse = objectMapper.convertValue(livro, LivroResponse.class);
 		Link links = linkTo(methodOn(LivroController.class).findLivro(livro.getIdLivro())).withSelfRel();
 		livroResponse.add(links);
+		return livroResponse;
+	}
+	
+	public LivroResponse criarLinkDetalhes(Livro livro) throws ObjectNotFoundException {
+		LivroResponse livroResponse = objectMapper.convertValue(livro, LivroResponse.class);
+		
+		Link linkDelete = linkTo(methodOn(LivroController.class)
+				.deleteLivro(livro.getIdLivro()))
+				.withRel("remover").withTitle("delete book")
+				.withType("delete");
+		
+		Link linkUpdate = linkTo(methodOn(LivroController.class)
+				.updateLivro(new LivroDTO()))
+				.withSelfRel()
+				.withTitle("update book").withType("update");
+		
+		livroResponse.add(linkDelete, linkUpdate);
 		return livroResponse;
 	}
 

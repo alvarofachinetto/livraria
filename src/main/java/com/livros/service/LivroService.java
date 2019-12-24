@@ -41,11 +41,12 @@ public class LivroService {
 		return livrosResp;
 	}
 	
-	public Livro findId(Long idLivro) throws ObjectNotFoundException{
-		Optional<Livro> livroOp = livroRepository.findById(idLivro);
-		livroOp
-			.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado " + Livro.class + " /nvalor "+ idLivro));
-		return livroOp.get();
+	public LivroResponse findId(Long idLivro) throws ObjectNotFoundException{
+		Livro livroOp = livroRepository.findById(idLivro)
+				.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado " + Livro.class + " /nvalor "+ idLivro));;	
+		LivroResponse livroResponse = resourceLivro.criarLinkDetalhes(livroOp);
+		
+		return livroResponse;
 	}
 	
 	@Transactional
