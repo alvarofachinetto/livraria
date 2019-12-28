@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Profile;
 
 import com.livros.service.H2Service;
 
-@Profile("teste")
+@Profile("prod")
 @Configuration
 public class DbConfig {
 	
