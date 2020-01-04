@@ -1,8 +1,6 @@
 package com.livros.security;
 
 import java.util.Collection;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -16,19 +14,16 @@ public class UserSecurity implements UserDetails{
 	private Long id;
 	private String password;
 	private String username;
-	private Collection<? extends GrantedAuthority> authorities;
+	private SimpleGrantedAuthority authoritie;
 	
 	public UserSecurity() {}
 	
-	public UserSecurity(Long id, String password, String username, Set<PermissaoUsuario>permissoesUser) {
+	public UserSecurity(Long id, String password, String username, PermissaoUsuario permissoesUser) {
 		super();
 		this.id = id;
 		this.password = password;
 		this.username = username;
-		this.authorities = permissoesUser
-								.stream()
-								.map(permissao -> new SimpleGrantedAuthority(permissao.getDescricao()))
-								.collect(Collectors.toList());
+		this.authoritie = new SimpleGrantedAuthority(permissoesUser.getDescricao());
 	}
 
 	public Long getId() {
@@ -70,10 +65,5 @@ public class UserSecurity implements UserDetails{
 		return true;
 	}
 
-	public boolean hasRole(PermissaoUsuario roleUsuario) {
-		return authorities
-				.contains(
-						new SimpleGrantedAuthority(roleUsuario.getDescricao()));
-	}
 	
 }

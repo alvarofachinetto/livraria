@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.livros.model.enums.PermissaoUsuario;
 
 @Entity
@@ -20,7 +21,8 @@ public class Usuario implements Serializable{
 	private Long idUser;
 	@Column(length = 70, nullable = false, unique = true)
 	private String email;
-	@Column(length = 15, nullable = false, unique = true)
+
+	@JsonIgnore
 	private String senha;
 	private PermissaoUsuario permissaoUsuario;
 	
