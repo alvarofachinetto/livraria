@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -34,18 +35,20 @@ public class LivroController {
 		return ResponseEntity.ok().body(livrosResp);
 	}
 	
+	@PreAuthorize("hasAnyRole('ADMIN')")
 	@GetMapping("/{idLivro}")
 	public ResponseEntity<LivroResponse> findLivro(@PathVariable Long idLivro) throws ObjectNotFoundException{
 		LivroResponse livroResponse = livroService.findId(idLivro);
 		return ResponseEntity.ok().body(livroResponse);
 	}
 	
+	@PreAuthorize("hasAnyRole('ADMIN')")
 	@PostMapping("/livro")
 	public ResponseEntity<Livro> saveLivro(@RequestBody Livro livro){
 		livroService.saveLivro(livro);
 		return ResponseEntity.status(HttpStatus.CREATED).body(livro);
 	}
-	
+	@PreAuthorize("hasAnyRole('ADMIN')")
 	@PutMapping("/{idLivro}")
 	public ResponseEntity<Livro> updateLivro(@RequestBody LivroDTO livroDto){
 		Livro livro = livroService.newLivroDto(livroDto);
@@ -53,6 +56,7 @@ public class LivroController {
 		return ResponseEntity.ok().body(livro);
 	}
 	
+	@PreAuthorize("hasAnyRole('ADMIN')")
 	@DeleteMapping("/{idlivro}")
 	public ResponseEntity<Void> deleteLivro(@PathVariable Long idLivro) throws ObjectNotFoundException{
 		livroService.deleteLivro(idLivro);
